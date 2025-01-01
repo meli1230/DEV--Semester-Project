@@ -14,19 +14,16 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Car[0].VIN)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Car[0].Model)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Car[0].CarType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Car[0].ProductionDate)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Car[0].Equipment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Car[0].Color)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Car[0].Transmission)
@@ -56,19 +53,16 @@
 @foreach (var item in Model.Car) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.VIN)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Model)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CarType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductionDate)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Equipment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Transmission)
@@ -93,7 +87,7 @@
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.VIN">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.VIN">Details</a> |
+                <a asp-page="./Details" asp-route-id="@item.VIN">Details</a> | 
                 <a asp-page="./Delete" asp-route-id="@item.VIN">Delete</a>
             </td>
         </tr>

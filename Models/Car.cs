@@ -12,32 +12,25 @@ namespace MelisaIuliaProiect.Models
         public string VIN { get; set; } //vehicle identification number (aka chassis number)
 
         //Model
-        [Display(Name = "Car Model")] //friendly name for display purposes
+        [Display(Name = "Model")] //friendly name for display purposes
         [Required]
         public string Model { get; set; } //ex: C-HR, Camry, RAV4
 
         //Type
+        [Display(Name = "Type")]
         [Required]
         public string CarType { get; set; } //ex: Sedan, Hatchback, Crossover
-
-        //Production Date
-        [DataType(DataType.Date)] //field should be treated as date
-        [Required]
-        public DateTime ProductionDate { get; set; }
 
         //Equipment type
         [Required]
         public string Equipment { get; set; } //ex: Exclusive, Dynamic, Active
-
-        //Color
-        [Required]
-        public string Color { get; set; }
 
         //Transmission
         [Required]
         public string Transmission { get; set; } //ex: Manual, Automatic
 
         //Horsepower
+        [Display(Name = "HP")]
         [Required]
         public int HorsePower { get; set; }
 
@@ -50,6 +43,7 @@ namespace MelisaIuliaProiect.Models
         public int Autonomy { get; set; }
 
         //Fuel Type
+        [Display(Name = "Fuel")]
         [Required]
         public string FuelType { get; set; } //ex: Petrol, Electric, Hybrid
 
