@@ -19,28 +19,28 @@
             @Html.DisplayFor(model => model.Car.VIN)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.Model)
+            @Html.DisplayNameFor(model => model.Car.VehicleModel)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Model)
+            @Html.DisplayFor(model => model.Car.VehicleModel.VehicleModelName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.CarType)
+            @Html.DisplayNameFor(model => model.Car.VehicleType)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.CarType)
+            @Html.DisplayFor(model => model.Car.VehicleType.VehicleTypeName)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Car.Equipment)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Equipment)
+            @Html.DisplayFor(model => model.Car.Equipment.EquipmentName)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Car.Transmission)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Transmission)
+            @Html.DisplayFor(model => model.Car.Transmission.TransmissionName)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Car.HorsePower)
@@ -61,16 +61,16 @@
             @Html.DisplayFor(model => model.Car.Autonomy)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Car.FuelType)
+            @Html.DisplayNameFor(model => model.Car.Fuel)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.FuelType)
+            @Html.DisplayFor(model => model.Car.Fuel.FuelName)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Car.Seller)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Car.Seller)
+            @Html.DisplayFor(model => model.Car.Seller.SellerName)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Car.Price)

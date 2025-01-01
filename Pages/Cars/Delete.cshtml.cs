@@ -29,16 +29,25 @@ namespace MelisaIuliaProiect.Pages.Cars
                 return NotFound();
             }
 
-            var car = await _context.Car.FirstOrDefaultAsync(m => m.VIN == id);
+            Car = await _context.Car
+                .Include(b => b.Equipment)
+                .Include(b => b.Fuel)
+                .Include(b => b.Seller)
+                .Include(b => b.Transmission)
+                .Include(b => b.VehicleModel)
+                .Include(b => b.VehicleType)
+                .FirstOrDefaultAsync(m => m.VIN == id);
 
-            if (car == null)
+            //var car = await _context.Car.FirstOrDefaultAsync(m => m.VIN == id);
+
+            if (Car == null)
             {
                 return NotFound();
             }
-            else
-            {
-                Car = car;
-            }
+            //else
+            //{
+            //    Car = car;
+            //}
             return Page();
         }
 
@@ -49,7 +58,17 @@ namespace MelisaIuliaProiect.Pages.Cars
                 return NotFound();
             }
 
-            var car = await _context.Car.FindAsync(id);
+            var car = await _context.Car
+                .Include(b => b.Equipment)
+                .Include(b => b.Fuel)
+                .Include(b => b.Seller)
+                .Include(b => b.Transmission)
+                .Include(b => b.VehicleModel)
+                .Include(b => b.VehicleType)
+                .FirstOrDefaultAsync(m => m.VIN == id);
+
+            //var car = await _context.Car.FindAsync(id);
+
             if (car != null)
             {
                 Car = car;

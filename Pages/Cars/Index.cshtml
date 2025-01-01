@@ -17,16 +17,16 @@
                 @Html.DisplayNameFor(model => model.Car[0].VIN)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Car[0].Model)
+                @Html.DisplayNameFor(model => model.Car[0].VehicleModel.VehicleModelName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Car[0].CarType)
+                @Html.DisplayNameFor(model => model.Car[0].VehicleType.VehicleTypeName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Car[0].Equipment)
+                @Html.DisplayNameFor(model => model.Car[0].Equipment.EquipmentName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Car[0].Transmission)
+                @Html.DisplayNameFor(model => model.Car[0].Transmission.TransmissionName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Car[0].HorsePower)
@@ -38,10 +38,10 @@
                 @Html.DisplayNameFor(model => model.Car[0].Autonomy)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Car[0].FuelType)
+                @Html.DisplayNameFor(model => model.Car[0].Fuel.FuelName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Car[0].Seller)
+                @Html.DisplayNameFor(model => model.Car[0].Seller.SellerName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Car[0].Price)
@@ -56,16 +56,16 @@
                 @Html.DisplayFor(modelItem => item.VIN)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Model)
+                @Html.DisplayFor(modelItem => item.VehicleModel.VehicleModelName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CarType)
+                @Html.DisplayFor(modelItem => item.VehicleType.VehicleTypeName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Equipment)
+                @Html.DisplayFor(modelItem => item.Equipment.EquipmentName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Transmission)
+                @Html.DisplayFor(modelItem => item.Transmission.TransmissionName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.HorsePower)
@@ -77,10 +77,10 @@
                 @Html.DisplayFor(modelItem => item.Autonomy)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FuelType)
+                @Html.DisplayFor(modelItem => item.Fuel.FuelName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Seller)
+                @Html.DisplayFor(modelItem => item.Seller.SellerName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)

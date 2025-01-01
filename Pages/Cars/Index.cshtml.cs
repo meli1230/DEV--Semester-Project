@@ -23,7 +23,14 @@ namespace MelisaIuliaProiect.Pages.Cars
 
         public async Task OnGetAsync()
         {
-            Car = await _context.Car.ToListAsync();
+            Car = await _context.Car
+                .Include(b => b.Seller)
+                .Include(b => b.Equipment)
+                .Include(b => b.Fuel)
+                .Include(b => b.Transmission)
+                .Include(b => b.VehicleModel)
+                .Include(b => b.VehicleType)
+                .ToListAsync();
         }
     }
 }

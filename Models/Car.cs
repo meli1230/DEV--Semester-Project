@@ -11,23 +11,21 @@ namespace MelisaIuliaProiect.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)] //don't generate automatically, as it will be given by the user
         public string VIN { get; set; } //vehicle identification number (aka chassis number)
 
-        //Model
-        [Display(Name = "Model")] //friendly name for display purposes
-        [Required]
-        public string Model { get; set; } //ex: C-HR, Camry, RAV4
+        //Vehicle model
+        public int? VehicleModelID { get; set; } //vehicle model entity
+        public VehicleModel? VehicleModel { get; set; } //navigation property
 
         //Type
-        [Display(Name = "Type")]
-        [Required]
-        public string CarType { get; set; } //ex: Sedan, Hatchback, Crossover
+        public int? VehicleTypeID { get; set; } //vehicle type entity
+        public VehicleType? VehicleType { get; set; }  //navigation property
 
         //Equipment type
-        [Required]
-        public string Equipment { get; set; } //ex: Exclusive, Dynamic, Active
+        public int? EquipmentID { get; set; } //equipment entity
+        public Equipment? Equipment { get; set; } //navigation property
 
         //Transmission
-        [Required]
-        public string Transmission { get; set; } //ex: Manual, Automatic
+        public int? TransmissionID { get; set; } //transmission entity
+        public Transmission? Transmission { get; set; }  //navigation property
 
         //Horsepower
         [Display(Name = "HP")]
@@ -43,13 +41,12 @@ namespace MelisaIuliaProiect.Models
         public int Autonomy { get; set; }
 
         //Fuel Type
-        [Display(Name = "Fuel")]
-        [Required]
-        public string FuelType { get; set; } //ex: Petrol, Electric, Hybrid
+        public int? FuelID { get; set; } //fuel entity
+        public Fuel? Fuel { get; set; } //navigation property
 
         //Seller
-        [Required]
-        public string Seller { get; set; } //ex: Toyota Cluj Vest, Toyota Calea Turzii
+        public int? SellerID { get; set; } //seller entity
+        public Seller? Seller { get; set; } //navigation property
 
         //Price
         [Column(TypeName = "decimal(9,2)")]

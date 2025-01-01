@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MelisaIuliaProiect.Data;
 using MelisaIuliaProiect.Models;
+using System.Security.Policy;
 
 namespace MelisaIuliaProiect.Pages.Cars
 {
@@ -21,6 +22,12 @@ namespace MelisaIuliaProiect.Pages.Cars
 
         public IActionResult OnGet()
         {
+            ViewData["SellerID"] = new SelectList(_context.Set<Seller>(), "ID", "SellerName");
+            ViewData["EquipmentID"] = new SelectList(_context.Set<Equipment>(), "ID", "EquipmentName");
+            ViewData["FuelID"] = new SelectList(_context.Set<Fuel>(), "ID", "FuelName");
+            ViewData["TransmissionID"] = new SelectList(_context.Set<Transmission>(), "ID", "TransmissionName");
+            ViewData["VehicleModelID"] = new SelectList(_context.Set<VehicleModel>(), "ID", "VehicleModelName");
+            ViewData["VehicleTypeID"] = new SelectList(_context.Set<VehicleType>(), "ID", "VehicleTypeName");
             return Page();
         }
 
