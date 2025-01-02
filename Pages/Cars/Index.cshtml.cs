@@ -24,9 +24,17 @@ namespace MelisaIuliaProiect.Pages.Cars
         public string CarVIN {  get; set; }
         public int FuelID { get; set; }
 
-        public async Task OnGetAsync(string vin, int? fuelID)
+        public string VINSort {  get; set; }
+        public string ModelSort {  get; set; }
+        public string TypeSort {  get; set; }
+
+        public async Task OnGetAsync(string vin, int? fuelID, string sortOrder)
         {
             CarD = new CarData();
+
+            VINSort = sortOrder == "vin" ? "vin_desc" : "vin";
+            ModelSort = sortOrder == "model" ? "model_desc" : "model";
+            TypeSort = sortOrder == "type" ? "type_desc" : "type";
 
             CarD.Cars = await _context.Car
                 .Include(b => b.Seller)
@@ -46,6 +54,33 @@ namespace MelisaIuliaProiect.Pages.Cars
                     .Where(c => c.VIN == vin)
                     .Single();
                 CarD.Fuels = car.CarFuels.Select(cf => cf.Fuel);
+            }
+
+            switch (sortOrder)
+            {
+                case "vin_desc":
+                    CarD.Cars = CarD.Cars.OrderByDescending(c => c.VIN).ToList();
+                    break;
+
+                case "vin":
+                    CarD.Cars = CarD.Cars.OrderBy(c => c.VIN).ToList();
+                    break;
+
+                case "type_desc":
+                    CarD.Cars = CarD.Cars.OrderByDescending(c => c.VehicleType.VehicleTypeName).ToList();
+                    break;
+
+                case "type":
+                    CarD.Cars = CarD.Cars.OrderBy(c => c.VehicleType.VehicleTypeName).ToList();
+                    break;
+
+                case "model_desc":
+                    CarD.Cars = CarD.Cars.OrderByDescending(c => c.VehicleModel.VehicleModelName).ToList();
+                    break;
+
+                default:
+                    CarD.Cars = CarD.Cars.OrderBy(c => c.VehicleModel.VehicleModelName).ToList(); // Default: Model ascending
+                    break;
             }
         }
     }
