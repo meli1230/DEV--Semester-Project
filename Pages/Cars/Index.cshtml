@@ -84,19 +84,19 @@
                     @Html.DisplayFor(modelItem => item.Transmission.TransmissionName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.HorsePower)
+                    @Html.DisplayFor(modelItem => item.HorsePower) PS
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Torque)
+                    @Html.DisplayFor(modelItem => item.Torque) Nm
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Autonomy)
+                    @Html.DisplayFor(modelItem => item.Autonomy) km
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Seller.SellerName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @Html.DisplayFor(modelItem => item.Price) €
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.VIN">Edit</a> |

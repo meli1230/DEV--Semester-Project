@@ -79,21 +79,36 @@
             <div class="form-group">
                 <span class="text-danger">*</span>
                 <label asp-for="Car.HorsePower" class="control-label"></label>
-                <input asp-for="Car.HorsePower" class="form-control" />
+                <div class="input-group">
+                    <input asp-for="Car.HorsePower" class="form-control" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">PS</span>
+                    </div>
+                </div>
                 <span asp-validation-for="Car.HorsePower" class="text-danger"></span>
             </div>
             <!--Torque-->
             <div class="form-group">
                 <span class="text-danger">*</span>
                 <label asp-for="Car.Torque" class="control-label"></label>
-                <input asp-for="Car.Torque" class="form-control" />
+                <div class="input-group">
+                    <input asp-for="Car.Torque" class="form-control" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">Nm</span>
+                    </div>
+                </div>
                 <span asp-validation-for="Car.Torque" class="text-danger"></span>
             </div>
             <!--Autonomy-->
             <div class="form-group">
                 <span class="text-danger">*</span>
                 <label asp-for="Car.Autonomy" class="control-label"></label>
-                <input asp-for="Car.Autonomy" class="form-control" />
+                <div class="input-group">
+                    <input asp-for="Car.Autonomy" class="form-control" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">km</span>
+                    </div>
+                </div>
                 <span asp-validation-for="Car.Autonomy" class="text-danger"></span>
             </div>
             <!--Seller-->
@@ -107,7 +122,12 @@
             <div class="form-group">
                 <span class="text-danger">*</span>
                 <label asp-for="Car.Price" class="control-label"></label>
-                <input asp-for="Car.Price" class="form-control" />
+                <div class="input-group">
+                    <input asp-for="Car.Price" class="form-control" />
+                    <div class="input-group-append">
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
                 <span asp-validation-for="Car.Price" class="text-danger"></span>
             </div>
             <br/>
