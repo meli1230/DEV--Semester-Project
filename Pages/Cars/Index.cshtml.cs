@@ -24,17 +24,24 @@ namespace MelisaIuliaProiect.Pages.Cars
         public string CarVIN {  get; set; }
         public int FuelID { get; set; }
 
+        //sort functionality
         public string VINSort {  get; set; }
         public string ModelSort {  get; set; }
-        public string TypeSort {  get; set; }
+        public string TypeSort { get; set; }
 
-        public async Task OnGetAsync(string vin, int? fuelID, string sortOrder)
+        //search functionality
+        public string Search { get; set; }
+
+        public async Task OnGetAsync(string vin, int? fuelID, string sortOrder, string searchInput)
         {
             CarD = new CarData();
 
             VINSort = sortOrder == "vin" ? "vin_desc" : "vin";
             ModelSort = sortOrder == "model" ? "model_desc" : "model";
             TypeSort = sortOrder == "type" ? "type_desc" : "type";
+
+            Search = searchInput;
+
 
             CarD.Cars = await _context.Car
                 .Include(b => b.Seller)
@@ -56,6 +63,7 @@ namespace MelisaIuliaProiect.Pages.Cars
                 CarD.Fuels = car.CarFuels.Select(cf => cf.Fuel);
             }
 
+            //sort
             switch (sortOrder)
             {
                 case "vin_desc":
@@ -81,6 +89,18 @@ namespace MelisaIuliaProiect.Pages.Cars
                 default:
                     CarD.Cars = CarD.Cars.OrderBy(c => c.VehicleModel.VehicleModelName).ToList(); // Default: Model ascending
                     break;
+            }
+
+            //search
+            if(!String.IsNullOrEmpty(searchInput))
+            {
+                string lowerSearchString = searchInput.ToLower();
+                CarD.Cars = CarD.Cars.Where(s => 
+                        s.VIN.ToLower().Contains(lowerSearchString) ||
+                        s.VehicleModel.VehicleModelName.ToLower().Contains(lowerSearchString) ||
+                        s.VehicleType.VehicleTypeName.ToLower().Contains(lowerSearchString)
+                    );
+                                            
             }
         }
     }

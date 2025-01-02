@@ -22,6 +22,7 @@ namespace MelisaIuliaProiect.Pages.Sellers
 
         public IList<Seller> Seller { get;set; } = default!;
 
+        //select functionality
         public SellerIndexData SellerData { get;set; }
         public int SellerID { get;set; }
         public string VIN {  get;set; }

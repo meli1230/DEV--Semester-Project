@@ -10,6 +10,18 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Search by VIN, Model or Body Type:
+            <input type="text" name="SearchInput" value="@Model.Search"/>
+            <input type="submit" value="Search" class="btn btn-primary"/> 
+            <a asp-page="./Index">Reset search filter</a>
+        </p>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>

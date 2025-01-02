@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id:int?}"
 @model MelisaIuliaProiect.Pages.Equipments.IndexModel
 
 @{
@@ -19,42 +19,78 @@
             <th>
                 @Html.DisplayNameFor(model => model.Equipment[0].Infotainment)
             </th>
-            <th>
+            <th style="width: 230px; white-space: nowrap;">
                 @Html.DisplayNameFor(model => model.Equipment[0].Upholstery)
             </th>
-            <th>
+            <th style="width: 200px; white-space: nowrap;">
                 @Html.DisplayNameFor(model => model.Equipment[0].Wheels)
             </th>
-            <th>
+            <th style="width: 325px; white-space: nowrap;">
                 @Html.DisplayNameFor(model => model.Equipment[0].ParkingAssist)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Equipment) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EquipmentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Infotainment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Upholstery)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Wheels)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ParkingAssist)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.EquipmentData.Equipments)
+        {
+            string selectedRow = "";
+            if (item.ID == Model.EquipmentID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.EquipmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Infotainment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Upholstery)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Wheels)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParkingAssist)
+                </td>
+
+                <td>
+                    <a asp-page="./Index" asp-route-id="@item.ID">Select</a> |
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+
+            </tr>
+        }
     </tbody>
 </table>
+
+
+@if (Model.EquipmentData.Cars != null)
+{
+    <h3>Cars sold by the selected equipment</h3>
+    <table class="table">
+        @foreach (var item in Model.EquipmentData.Equipments)
+        {
+            string selectedRow = "";
+            if (item.ID == Model.EquipmentID)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @{
+                        foreach (var car in item.Cars)
+                        {
+                            @car.VIN @: - @car.VehicleModel?.VehicleModelName - @car.Price €
+                            <br />
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
