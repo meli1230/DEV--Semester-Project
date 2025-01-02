@@ -36,6 +36,7 @@ namespace MelisaIuliaProiect.Pages.Cars
                 .Include(b => b.Transmission)
                 .Include(b => b.VehicleModel)
                 .Include(b => b.VehicleType)
+                .Include(b => b.CarFuels).ThenInclude(cf => cf.Fuel)
                 .FirstOrDefaultAsync(m => m.VIN == id);
             
 

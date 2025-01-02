@@ -15,13 +15,17 @@ namespace MelisaIuliaProiect.Models
         public int? VehicleModelID { get; set; } //vehicle model entity
         public VehicleModel? VehicleModel { get; set; } //navigation property
 
-        //Type
+        //Body type
         public int? VehicleTypeID { get; set; } //vehicle type entity
         public VehicleType? VehicleType { get; set; }  //navigation property
 
         //Equipment type
         public int? EquipmentID { get; set; } //equipment entity
         public Equipment? Equipment { get; set; } //navigation property
+
+        //Fuel Type
+        [Display(Name = "Fuel")]
+        public ICollection<CarFuel>? CarFuels { get; set; }
 
         //Transmission
         public int? TransmissionID { get; set; } //transmission entity
@@ -39,10 +43,6 @@ namespace MelisaIuliaProiect.Models
         //Autonomy
         [Required]
         public int Autonomy { get; set; }
-
-        //Fuel Type
-        [Display(Name = "Fuel")]
-        public ICollection<CarFuel>? CarFuels { get; set; }
 
         //Seller
         public int? SellerID { get; set; } //seller entity

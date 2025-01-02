@@ -26,6 +26,9 @@
                 @Html.DisplayNameFor(model => model.Car[0].Equipment.EquipmentName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Car[0].CarFuels)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Car[0].Transmission.TransmissionName)
             </th>
             <th>
@@ -37,17 +40,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.Car[0].Autonomy)
             </th>
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.Car[0].Fuel.FuelName) *@
-            @* </th> *@
             <th>
                 @Html.DisplayNameFor(model => model.Car[0].Seller.SellerName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Car[0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Car[0].CarFuels)
             </th>
             <th></th>
         </tr>
@@ -76,6 +73,14 @@
                     @Html.DisplayFor(modelItem => item.Equipment.EquipmentName)
                 </td>
                 <td>
+                    @{
+                        foreach (var fuel in item.CarFuels)
+                        {
+                            @fuel.Fuel.FuelName <br />
+                        }
+                    }
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Transmission.TransmissionName)
                 </td>
                 <td>
@@ -87,23 +92,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Autonomy)
                 </td>
-
-                @* <td> *@
-                @*     @Html.DisplayFor(modelItem => item.Fuel.FuelName) *@
-                @* </td> *@
                 <td>
                     @Html.DisplayFor(modelItem => item.Seller.SellerName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @{
-                        foreach (var fuel in item.CarFuels)
-                        {
-                            @fuel.Fuel.FuelName <br />
-                        }
-                    }
                 </td>
                 <td>
                     <a asp-page="./Edit" asp-route-id="@item.VIN">Edit</a> |

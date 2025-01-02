@@ -37,6 +37,17 @@
             @Html.DisplayFor(model => model.Car.Equipment.EquipmentName)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Car.CarFuels)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                foreach (var fuel in Model.Car.CarFuels)
+                {
+                    @fuel.Fuel.FuelName <br/>
+                }
+            }
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Car.Transmission)
         </dt>
         <dd class="col-sm-10">
@@ -60,12 +71,6 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Car.Autonomy)
         </dd>
-        @* <dt class="col-sm-2"> *@
-        @*     @Html.DisplayNameFor(model => model.Car.Fuel) *@
-        @* </dt> *@
-        @* <dd class="col-sm-10"> *@
-        @*     @Html.DisplayFor(model => model.Car.Fuel.FuelName) *@
-        @* </dd> *@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Car.Seller)
         </dt>
