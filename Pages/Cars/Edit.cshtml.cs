@@ -11,7 +11,7 @@ using MelisaIuliaProiect.Models;
 
 namespace MelisaIuliaProiect.Pages.Cars
 {
-    public class EditModel : PageModel
+    public class EditModel : CarFuelsPageModel
     {
         private readonly MelisaIuliaProiect.Data.MelisaIuliaProiectContext _context;
 
@@ -30,12 +30,23 @@ namespace MelisaIuliaProiect.Pages.Cars
                 return NotFound();
             }
 
-            var car =  await _context.Car.FirstOrDefaultAsync(m => m.VIN == id);
-            if (car == null)
+            Car = await _context.Car
+                .Include(b => b.Equipment)
+                .Include (b => b.CarFuels).ThenInclude(b => b.Fuel)
+                .Include(b => b.Seller)
+                .Include(b => b.Transmission)
+                .Include(b => b.VehicleModel)
+                .Include(b => b.VehicleType)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.VIN == id);
+
+            if (Car == null)
             {
                 return NotFound();
             }
-            Car = car;
+
+            PopulateAssignedFuelData(_context, Car);
+
             ViewData["SellerID"] = new SelectList(_context.Set<Seller>(), "ID", "SellerName");
             ViewData["EquipmentID"] = new SelectList(_context.Set<Equipment>(), "ID", "EquipmentName");
             ViewData["FuelID"] = new SelectList(_context.Set<Fuel>(), "ID", "FuelName");
@@ -47,37 +58,50 @@ namespace MelisaIuliaProiect.Pages.Cars
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more information, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string id, string[] selectedFuels)
         {
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return Page();
+                return NotFound();
             }
 
-            _context.Attach(Car).State = EntityState.Modified;
+            var carToUpdate = await _context.Car
+                .Include(b => b.Equipment)
+                .Include(b => b.CarFuels).ThenInclude(b => b.Fuel)
+                .Include(b => b.Seller)
+                .Include(b => b.Transmission)
+                .Include(b => b.VehicleModel)
+                .Include(b => b.VehicleType)
+                .FirstOrDefaultAsync(m => m.VIN == id);
 
-            try
+            if (carToUpdate == null)
             {
+                return NotFound();
+            }
+
+            if (await TryUpdateModelAsync<Car>(
+                carToUpdate,
+                "Car",
+                c => c.HorsePower, 
+                c => c.Torque, 
+                c => c.Autonomy, 
+                c => c.Price,
+                c => c.EquipmentID, 
+                c => c.SellerID, 
+                c => c.TransmissionID,
+                c => c.VehicleModelID, 
+                c => c.VehicleTypeID
+                ))
+            {
+                UpdateCarFuels(_context, selectedFuels, carToUpdate);
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CarExists(Car.VIN))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return RedirectToPage("./Index");
             }
 
-            return RedirectToPage("./Index");
-        }
+            UpdateCarFuels(_context, selectedFuels, carToUpdate);
+            PopulateAssignedFuelData(_context, carToUpdate);
 
-        private bool CarExists(string id)
-        {
-            return _context.Car.Any(e => e.VIN == id);
+            return Page();
         }
     }
 }

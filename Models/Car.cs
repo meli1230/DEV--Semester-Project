@@ -41,8 +41,8 @@ namespace MelisaIuliaProiect.Models
         public int Autonomy { get; set; }
 
         //Fuel Type
-        public int? FuelID { get; set; } //fuel entity
-        public Fuel? Fuel { get; set; } //navigation property
+        [Display(Name = "Fuel")]
+        public ICollection<CarFuel>? CarFuels { get; set; }
 
         //Seller
         public int? SellerID { get; set; } //seller entity

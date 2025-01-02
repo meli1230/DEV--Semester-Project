@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/"
 @model MelisaIuliaProiect.Pages.Cars.IndexModel
 
 @{
@@ -37,60 +37,80 @@
             <th>
                 @Html.DisplayNameFor(model => model.Car[0].Autonomy)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Car[0].Fuel.FuelName)
-            </th>
+            @* <th> *@
+            @*     @Html.DisplayNameFor(model => model.Car[0].Fuel.FuelName) *@
+            @* </th> *@
             <th>
                 @Html.DisplayNameFor(model => model.Car[0].Seller.SellerName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Car[0].Price)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car[0].CarFuels)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Car) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.VIN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleModel.VehicleModelName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleType.VehicleTypeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Equipment.EquipmentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Transmission.TransmissionName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HorsePower)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Torque)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Autonomy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fuel.FuelName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Seller.SellerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.VIN">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.VIN">Details</a> | 
-                <a asp-page="./Delete" asp-route-id="@item.VIN">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.CarD.Cars)
+        {
+            string selectedRow = "";
+            if (item.VIN == Model.CarVIN)
+            {
+                selectedRow = "table-success";
+            }
+
+            <tr class="@selectedRow">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.VIN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleModel.VehicleModelName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleType.VehicleTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Equipment.EquipmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Transmission.TransmissionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HorsePower)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Torque)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Autonomy)
+                </td>
+
+                @* <td> *@
+                @*     @Html.DisplayFor(modelItem => item.Fuel.FuelName) *@
+                @* </td> *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seller.SellerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @{
+                        foreach (var fuel in item.CarFuels)
+                        {
+                            @fuel.Fuel.FuelName <br />
+                        }
+                    }
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.VIN">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.VIN">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.VIN">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

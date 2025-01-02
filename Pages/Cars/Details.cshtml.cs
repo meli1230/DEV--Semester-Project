@@ -30,7 +30,7 @@ namespace MelisaIuliaProiect.Pages.Cars
 
             Car = await _context.Car
                 .Include(b => b.Equipment)
-                .Include(b => b.Fuel)
+                //.Include(b => b.Fuel)
                 .Include(b => b.Seller)
                 .Include(b => b.Transmission)
                 .Include(b => b.VehicleModel)

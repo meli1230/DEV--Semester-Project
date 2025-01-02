@@ -9,9 +9,10 @@ using MelisaIuliaProiect.Data;
 using MelisaIuliaProiect.Models;
 using System.Security.Policy;
 
+
 namespace MelisaIuliaProiect.Pages.Cars
 {
-    public class CreateModel : PageModel
+    public class CreateModel : CarFuelsPageModel
     {
         private readonly MelisaIuliaProiect.Data.MelisaIuliaProiectContext _context;
 
@@ -28,6 +29,11 @@ namespace MelisaIuliaProiect.Pages.Cars
             ViewData["TransmissionID"] = new SelectList(_context.Set<Transmission>(), "ID", "TransmissionName");
             ViewData["VehicleModelID"] = new SelectList(_context.Set<VehicleModel>(), "ID", "VehicleModelName");
             ViewData["VehicleTypeID"] = new SelectList(_context.Set<VehicleType>(), "ID", "VehicleTypeName");
+
+            var car = new Car();
+            car.CarFuels = new List<CarFuel>();
+            PopulateAssignedFuelData(_context, car);
+
             return Page();
         }
 
@@ -35,17 +41,30 @@ namespace MelisaIuliaProiect.Pages.Cars
         public Car Car { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string[] selectedFuels)
         {
-            if (!ModelState.IsValid)
+            var newCar = new Car();
+
+            if (selectedFuels != null)
             {
-                return Page();
+                newCar.CarFuels = new List<CarFuel>();
+                foreach (var fuel in selectedFuels)
+                {
+                    var fuelToAdd = new CarFuel
+                    {
+                        FuelID = int.Parse(fuel)
+                    };
+                    newCar.CarFuels.Add(fuelToAdd);
+                }
             }
+
+            Car.CarFuels = newCar.CarFuels;
 
             _context.Car.Add(Car);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
+
     }
 }

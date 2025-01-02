@@ -19,18 +19,34 @@ namespace MelisaIuliaProiect.Pages.Cars
             _context = context;
         }
 
-        public IList<Car> Car { get;set; } = default!;
+        public IList<Car> Car { get;set; }
+        public CarData CarD {  get;set; }
+        public string CarVIN {  get; set; }
+        public int FuelID { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string vin, int? fuelID)
         {
-            Car = await _context.Car
+            CarD = new CarData();
+
+            CarD.Cars = await _context.Car
                 .Include(b => b.Seller)
                 .Include(b => b.Equipment)
-                .Include(b => b.Fuel)
+                .Include(c => c.CarFuels).ThenInclude(cf => cf.Fuel)
                 .Include(b => b.Transmission)
                 .Include(b => b.VehicleModel)
                 .Include(b => b.VehicleType)
+                .AsNoTracking()
+                .OrderBy(c => c.VIN)
                 .ToListAsync();
+
+            if (vin != null)
+            {
+                CarVIN = vin;
+                Car car = CarD.Cars
+                    .Where(c => c.VIN == vin)
+                    .Single();
+                CarD.Fuels = car.CarFuels.Select(cf => cf.Fuel);
+            }
         }
     }
 }

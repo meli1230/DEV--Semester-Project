@@ -12,6 +12,6 @@ namespace MelisaIuliaProiect.Models
         [Required]
         public string FuelName { get; set; } //ex: Petrol, Electric, Hybrid
 
-        public ICollection<Car>? Cars { get; set; } //navigation property
+        public ICollection<CarFuel>? CarFuels { get; set; } //navigation property
     }
 }

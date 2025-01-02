@@ -4,6 +4,7 @@ using MelisaIuliaProiect.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MelisaIuliaProiect.Migrations
 {
     [DbContext(typeof(MelisaIuliaProiectContext))]
-    partial class MelisaIuliaProiectContextModelSnapshot : ModelSnapshot
+    [Migration("20250102135643_ChangeFuelToCategory")]
+    partial class ChangeFuelToCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,8 +80,10 @@ namespace MelisaIuliaProiect.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<string>("CarVIN")
-                        .IsRequired()
+                    b.Property<int>("CarVIN")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CarVIN1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("FuelID")
@@ -86,7 +91,7 @@ namespace MelisaIuliaProiect.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CarVIN");
+                    b.HasIndex("CarVIN1");
 
                     b.HasIndex("FuelID");
 
@@ -248,9 +253,7 @@ namespace MelisaIuliaProiect.Migrations
                 {
                     b.HasOne("MelisaIuliaProiect.Models.Car", "Car")
                         .WithMany("CarFuels")
-                        .HasForeignKey("CarVIN")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CarVIN1");
 
                     b.HasOne("MelisaIuliaProiect.Models.Fuel", "Fuel")
                         .WithMany("CarFuels")
