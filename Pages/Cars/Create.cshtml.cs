@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MelisaIuliaProiect.Data;
 using MelisaIuliaProiect.Models;
 using System.Security.Policy;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace MelisaIuliaProiect.Pages.Cars
 {
+    [Authorize(Roles="Admin")]
     public class CreateModel : CarFuelsPageModel
     {
         private readonly MelisaIuliaProiect.Data.MelisaIuliaProiectContext _context;

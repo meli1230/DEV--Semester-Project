@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using MelisaIuliaProiect.Data;
 using MelisaIuliaProiect.Models;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace MelisaIuliaProiect.Pages.Cars
 {
+    [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly MelisaIuliaProiect.Data.MelisaIuliaProiectContext _context;

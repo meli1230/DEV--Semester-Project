@@ -9,7 +9,8 @@ namespace MelisaIuliaProiect.Models
 
         //Type name
         [Display(Name = "Body Type")]
-        [Required]
+        [Required(ErrorMessage = "This field is required.")]
+        [StringLength(50, ErrorMessage = "Requirements: at most 50 characters")]
         public string VehicleTypeName { get; set; } //ex: Sedan, Hatchback, Crossover
 
         public ICollection<Car>? Cars { get; set; } //navigation property
