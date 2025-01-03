@@ -34,6 +34,12 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Car.Equipment.EquipmentName)
+            <div style="margin-left: 30px;">
+                <span><em>Infotainment:</em> @Model.Car.Equipment.Infotainment</span><br />
+                <span><em>Upholstery:</em> @Model.Car.Equipment.Upholstery</span><br />
+                <span><em>Wheels:</em> @Model.Car.Equipment.Wheels</span><br />
+                <span><em>Parking Assist:</em> @Model.Car.Equipment.ParkingAssist</span>
+            </div>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Car.CarFuels)
