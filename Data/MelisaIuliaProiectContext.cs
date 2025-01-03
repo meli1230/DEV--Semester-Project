@@ -23,5 +23,10 @@ namespace MelisaIuliaProiect.Data
         public DbSet<MelisaIuliaProiect.Models.VehicleType> VehicleType { get; set; } = default!;
         public DbSet<MelisaIuliaProiect.Models.Customer> Customer { get; set; } = default!;
         public DbSet<MelisaIuliaProiect.Models.TestDrive> TestDrive { get; set; } = default!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
