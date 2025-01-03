@@ -24,13 +24,13 @@ namespace MelisaIuliaProiect.Pages.TestDrives
         public async Task OnGetAsync()
         {
             TestDrive = await _context.TestDrive
-                .Include (t => t.Car)
-                    .ThenInclude(t => t.VehicleModel)
-                .Include (t=> t.Car)
-                    .ThenInclude(t => t.Transmission)
-                .Include(t => t.Car)
-                    .ThenInclude(t => t.Seller)
-                .Include(t => t.Customer)
+                 .Include(td => td.Car)
+                     .ThenInclude(c => c.VehicleModel)
+                .Include(td => td.Car)
+                    .ThenInclude(c => c.Transmission)
+                .Include(td => td.Car)
+                    .ThenInclude(c => c.Seller)
+                .Include(td => td.Customer)
                 .ToListAsync();
         }
     }

@@ -28,15 +28,21 @@ namespace MelisaIuliaProiect.Pages.TestDrives
                 return NotFound();
             }
 
-            var testdrive = await _context.TestDrive.FirstOrDefaultAsync(m => m.ID == id);
-            if (testdrive == null)
+            TestDrive = await _context.TestDrive
+                .Include(td => td.Customer) 
+                .Include(td => td.Car) 
+                    .ThenInclude(c => c.VehicleModel)
+                .Include(td => td.Car)
+                    .ThenInclude(c => c.Transmission)
+                .Include(td => td.Car)
+                    .ThenInclude(c => c.Seller)
+                .FirstOrDefaultAsync(m => m.ID == id);
+
+            if (TestDrive == null)
             {
                 return NotFound();
             }
-            else
-            {
-                TestDrive = testdrive;
-            }
+
             return Page();
         }
     }

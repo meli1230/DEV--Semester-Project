@@ -17,16 +17,19 @@
                 @Html.DisplayNameFor(model => model.TestDrive[0].Customer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TestDrive[0].Car)
+                @Html.DisplayNameFor(model => model.TestDrive[0].Car.VehicleModel.VehicleModelName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TestDrive[0].Car.VehicleModel)
+                @Html.DisplayNameFor(model => model.TestDrive[0].Car.Transmission.TransmissionName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TestDrive[0].Car.Transmission)
+                @Html.DisplayNameFor(model => model.TestDrive[0].Car.HorsePower)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TestDrive[0].Car.Seller)
+                @Html.DisplayNameFor(model => model.TestDrive[0].Car.Seller.SellerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestDrive[0].Car.VIN)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TestDrive[0].TestDriveDate)
@@ -41,17 +44,20 @@
                 @Html.DisplayFor(modelItem => item.Customer.FullName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Car.VIN)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Car.VehicleModel.VehicleModelName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Car.Transmission.TransmissionName)
             </td>
             <td>
+            @Html.DisplayFor(modelItem => item.Car.HorsePower)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Car.Seller.SellerName)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Car.VIN)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TestDriveDate)
             </td>

@@ -23,21 +23,22 @@ namespace MelisaIuliaProiect.Pages.TestDrives
         public IActionResult OnGet()
         {
             var carList = _context.Car
-                .Include(b => b.VehicleModel)
-                .Include(b => b.Transmission)
-                .Include(b => b.Seller)
-                .Select(c => new
+                .Include(c => c.VehicleModel)
+                .Include(c => c.Transmission)
+                .Include(c => c.Seller)
+                .Select(x => new
                 {
-                    c.VIN,
-                    CarSpecs = c.VehicleModel.VehicleModelName + " " + 
-                        c.Transmission.TransmissionName + " " +
-                        c.HorsePower + " PS sold by" +
-                        c.Seller.SellerName
+                    x.VIN,
+                    CarSpecs = 
+                         x.VehicleModel.VehicleModelName + " - " +
+                         x.Transmission.TransmissionName + " - " +
+                         x.HorsePower + " PS - " + 
+                         x.Seller.SellerName
                 });
+
 
             ViewData["CarVIN"] = new SelectList(carList, "VIN", "CarSpecs");
             ViewData["CustomerID"] = new SelectList(_context.Customer, "ID", "FullName");
-
             return Page();
         }
 

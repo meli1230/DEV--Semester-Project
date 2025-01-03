@@ -30,14 +30,39 @@ namespace MelisaIuliaProiect.Pages.TestDrives
                 return NotFound();
             }
 
+            TestDrive = await _context.TestDrive
+                .Include(td => td.Customer) 
+                .Include(td => td.Car)
+                    .ThenInclude(c => c.VehicleModel)
+                .Include(td => td.Car)
+                    .ThenInclude(c => c.Transmission)
+                .Include(td => td.Car)
+                    .ThenInclude(c => c.Seller)
+                .FirstOrDefaultAsync(m => m.ID == id);
 
-            var testdrive =  await _context.TestDrive.FirstOrDefaultAsync(m => m.ID == id);
-            if (testdrive == null)
+            if (TestDrive == null)
             {
                 return NotFound();
             }
-            TestDrive = testdrive;
-           ViewData["CustomerID"] = new SelectList(_context.Customer, "ID", "ID");
+
+            var carList = _context.Car
+                .Include(c => c.VehicleModel)
+                .Include(c => c.Transmission)
+                .Include(c => c.Seller)
+                .Select(x => new
+                {
+                    x.VIN,
+                    CarSpecs =
+                        x.VehicleModel.VehicleModelName + " - " +
+                        x.Transmission.TransmissionName + " - " +
+                        x.HorsePower + " PS - " +
+                        x.Seller.SellerName
+                })
+                .ToList();
+
+            //TestDrive = testdrive;
+            ViewData["CarVIN"] = new SelectList(carList, "VIN", "CarSpecs");
+            ViewData["CustomerID"] = new SelectList(_context.Customer, "ID", "FullName");
             return Page();
         }
 

@@ -11,24 +11,56 @@
     <h4>TestDrive</h4>
     <hr />
     <dl class="row">
+        <!--Customer Name-->
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.TestDrive.Customer)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TestDrive.Customer.ID)
+            @Html.DisplayFor(model => model.TestDrive.Customer.FullName)
         </dd>
+        <!--Car VIN-->
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TestDrive.CarID)
+            @Html.DisplayNameFor(model => model.TestDrive.Car.VIN)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TestDrive.CarID)
+            @Html.DisplayFor(model => model.TestDrive.Car.VIN)
         </dd>
+        <!--Car Model-->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestDrive.Car.VehicleModel.VehicleModelName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestDrive.Car.VehicleModel.VehicleModelName)
+        </dd>
+        <!--Car Transmission-->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestDrive.Car.Transmission.TransmissionName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestDrive.Car.Transmission.TransmissionName)
+        </dd>
+        <!--Car Horsepower-->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestDrive.Car.HorsePower)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestDrive.Car.HorsePower)
+        </dd>
+        <!--Car Seller-->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TestDrive.Car.Seller.SellerName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TestDrive.Car.Seller.SellerName)
+        </dd>
+        <!--Test Drive Date-->
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.TestDrive.TestDriveDate)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.TestDrive.TestDriveDate)
         </dd>
+
     </dl>
 </div>
 <div>
