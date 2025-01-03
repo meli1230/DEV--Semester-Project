@@ -1,0 +1,66 @@
+﻿@page
+@model MelisaIuliaProiect.Pages.TestDrives.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TestDrive[0].Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestDrive[0].Car)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestDrive[0].Car.VehicleModel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestDrive[0].Car.Transmission)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestDrive[0].Car.Seller)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TestDrive[0].TestDriveDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TestDrive) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.VIN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.VehicleModel.VehicleModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.Transmission.TransmissionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Car.Seller.SellerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestDriveDate)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

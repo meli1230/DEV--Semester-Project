@@ -52,5 +52,9 @@ namespace MelisaIuliaProiect.Models
         [Column(TypeName = "decimal(9,2)")]
         [Required]
         public decimal Price { get; set; }
+
+        //Test Drives
+        [Display(Name = "Test Drive")]
+        public ICollection<TestDrive>? TestDrives{ get; set; }
     }
 }

@@ -21,5 +21,7 @@ namespace MelisaIuliaProiect.Data
         public DbSet<MelisaIuliaProiect.Models.Transmission> Transmission { get; set; } = default!;
         public DbSet<MelisaIuliaProiect.Models.VehicleModel> VehicleModel { get; set; } = default!;
         public DbSet<MelisaIuliaProiect.Models.VehicleType> VehicleType { get; set; } = default!;
+        public DbSet<MelisaIuliaProiect.Models.Customer> Customer { get; set; } = default!;
+        public DbSet<MelisaIuliaProiect.Models.TestDrive> TestDrive { get; set; } = default!;
     }
 }
