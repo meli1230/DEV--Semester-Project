@@ -1,4 +1,4 @@
-# DEV - Semester Project  
+# ASP .NET Car Dealership
 
 ## Overview  
 This **ASP.NET Core MVC** project is designed for managing **vehicles, customers, sellers, test drives, and related data**. It uses **Entity Framework Core (EF Core) for database operations**, **C# models for structured data**, and supports **CRUD functionalities with user authentication and role-based access control**.
